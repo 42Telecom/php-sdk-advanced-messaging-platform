@@ -1,0 +1,23 @@
+<phpunit
+    bootstrap="Bootstrap.php"
+>
+    <testsuites>
+        <testsuite name="Fortytow SDKs - Advanced Messaging Platform">
+            <directory>.</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <blacklist>
+            <directory>../vendor</directory>
+            <directory>../tests</directory>
+        </blacklist>
+        <whitelist>
+            <directory>../src</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="../test-coverage" />
+    </logging>
+</phpunit>
