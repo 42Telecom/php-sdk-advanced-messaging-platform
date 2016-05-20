@@ -1,16 +1,22 @@
 <?php
 /**
- * This Example send a SMS Message to FortyTwo 2FA API and request a message status.
+ * This Example send an IM Message.
  */
+
+// You have to include the dependencies
+// The main class for the SDK
 use Fortytwo\SDK\AdvancedMessagingPlatform\AdvancedMessagingPlatform;
+// The class who represent the model of the API
+// The Destination class
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\DestinationEntity;
-use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\SMSContentEntity;
+// The IM Content class
+use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\IMContentEntity;
+// Request Body class
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\RequestBodyEntity;
 
+// We bootstrap the SDK.
 $root = realpath(dirname(dirname(__FILE__)));
-
 $library = $root . "/src";
-
 $path = array($library, get_include_path());
 set_include_path(implode(PATH_SEPARATOR, $path));
 
@@ -23,42 +29,40 @@ Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
     $root . "/vendor/jms/serializer/src"
 );
 
+
+// Here the code to create and send the message.
 try {
     $messaging = new AdvancedMessagingPlatform('mytoken');
 
-    //Set destination
+    //Create a destination
     $destination = new DestinationEntity();
     $destination
-        ->setNumber(356123458)
+        ->setNumber(356123456)
         ->setCustomId('123456789')
     ;
 
-    // Prepeare SMS Content
-    $SMS = new SMSContentEntity();
+    // Prepare the IM content
+    $IM = new IMContentEntity();
 
-    $SMS
-        ->setMessage('Hello! This is a test.')
-        ->setSenderId('blabla')
-        ->setTtl(3600)
+    $IM
+        ->setChannel('VIBER')
+        ->setContent('Hello! This is an IM message from the SDK.')
     ;
 
+    // Prepare the Request Body
     $request = new RequestBodyEntity();
-
     $request
         ->addDestinations($destination)
-        ->setSmsContent($SMS);
+        ->setImContent($IM)
+        ->setCallbackUrl('https://example.com/im/callback-sales')
+        ->setJobId('abc123456')
+    ;
 
+    // Send the IM message
     $response = $messaging->sendMessage($request);
 
-    foreach ($response->getResults() as $id => $detail) {
-        $status = $messaging->getStatus($detail['message_id']);
-    }
-
+    // Print the response.
     print_r($response->getResultInfo()->getDescription());
-
-    foreach ($status->getData() as $key => $item) {
-        print_r($item->getStatus());
-    }
 
 } catch (\Exception $e) {
     echo $e->getMessage();

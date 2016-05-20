@@ -151,7 +151,8 @@ class RequestBodyEntity
      */
     public function setImContent(IMContentEntity $imContent)
     {
-        $this->imContent = $imContent;
+        $this->imContent = array();
+        $this->imContent[] = $imContent;
 
         return $this;
     }
