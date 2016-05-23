@@ -7,17 +7,11 @@ use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\DestinationEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\SMSContentEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\RequestBodyEntity;
 
-$root = realpath(dirname(dirname(__FILE__)));
-
-$library = $root . "/src";
-
-$path = array($library, get_include_path());
-set_include_path(implode(PATH_SEPARATOR, $path));
-
 // Using the Composer autoload
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
 // Declaring some dependencies for the Serializer
+$root = realpath(dirname(dirname(__FILE__)));
 Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
     'JMS\Serializer\Annotation',
     $root . "/vendor/jms/serializer/src"

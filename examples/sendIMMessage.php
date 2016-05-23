@@ -14,16 +14,11 @@ use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\IMContentEntity;
 // Request Body class
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\RequestBodyEntity;
 
-// We bootstrap the SDK.
-$root = realpath(dirname(dirname(__FILE__)));
-$library = $root . "/src";
-$path = array($library, get_include_path());
-set_include_path(implode(PATH_SEPARATOR, $path));
-
 // Using the Composer autoload
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
 // Declaring some dependencies for the Serializer
+$root = realpath(dirname(dirname(__FILE__)));
 Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
     'JMS\Serializer\Annotation',
     $root . "/vendor/jms/serializer/src"
@@ -32,7 +27,7 @@ Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
 
 // Here the code to create and send the message.
 try {
-    $messaging = new AdvancedMessagingPlatform('mytoken');
+    $messaging = new AdvancedMessagingPlatform('6244adac-7e4c-4c4d-96dc-9f3af0d24117');
 
     //Create a destination
     $destination = new DestinationEntity();
