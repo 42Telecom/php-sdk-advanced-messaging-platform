@@ -1,8 +1,8 @@
 {
     "name": "fortytwo/php-sdk-advanced-messaging-platform",
-    "description": "Fortytwo’s Two-Factor Authentication (2FA) API adds an additional layer of security to your users’ login credentials with a unique one-time code which limits the risk of fraudulent access to your website.",
+    "description": "Our Advanced Messaging Platform cleverly routes traffic via SMS or IM based on your preferences for delivery and unique knowledge of your audience or it can determine the best way to deliver your message based on factors such as content, cost and deliverability rates.",
     "license": "MIT",
-    "keywords": ["AMP","SMS Messaging","IM Messaging","Viber Messaging","fortytwo"],
+    "keywords": ["AMP","SMS Messaging","IM Messaging","Viber Messaging","fortytwo", "Advanced Messaging Platform"],
     "authors": [
         {
             "name": "Sebastien Lemarinel",
