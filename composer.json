@@ -2,7 +2,7 @@
     "name": "fortytwo/php-sdk-advanced-messaging-platform",
     "description": "Our Advanced Messaging Platform cleverly routes traffic via SMS or IM based on your preferences for delivery and unique knowledge of your audience or it can determine the best way to deliver your message based on factors such as content, cost and deliverability rates.",
     "license": "MIT",
-    "keywords": ["AMP","SMS Messaging","IM Messaging","Viber Messaging","fortytwo", "Advanced Messaging Platform"],
+    "keywords": ["AMP", "SMS Messaging", "IM Messaging", "Viber Messaging", "fortytwo", "Advanced Messaging Platform"],
     "authors": [
         {
             "name": "Sebastien Lemarinel",
@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "fortytwo/php-sdk-core": "1.1.1",
+        "fortytwo/php-sdk-core": "1.1.*",
         "symfony/validator": "^3.0"
     },
     "require-dev": {

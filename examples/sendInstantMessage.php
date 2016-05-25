@@ -1,6 +1,7 @@
 <?php
 /**
  * This Example send an IM Message.
+ * NOTE: If you want to test you have to replace <INSERT_TOKEN_HERE> with a valid token.
  */
 
 // You have to include the dependencies
@@ -18,16 +19,16 @@ use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\RequestBodyEntity;
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
 // Declaring some dependencies for the Serializer
-$root = realpath(dirname(dirname(__FILE__)));
+$root = dirname(__FILE__);
 Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
     'JMS\Serializer\Annotation',
-    $root . "/vendor/jms/serializer/src"
+    $root . "/../vendor/jms/serializer/src"
 );
 
 
 // Here the code to create and send the message.
 try {
-    $messaging = new AdvancedMessagingPlatform('6244adac-7e4c-4c4d-96dc-9f3af0d24117');
+    $messaging = new AdvancedMessagingPlatform('<INSERT_TOKEN_HERE>');
 
     //Create a destination
     $destination = new DestinationEntity();
@@ -41,13 +42,13 @@ try {
 
     $IM
         ->setChannel('VIBER')
-        ->setContent('Hello! This is an IM message from the SDK.')
+        ->setContent('This is a test IM message from Fortytwo.')
     ;
 
     // Prepare the Request Body
     $request = new RequestBodyEntity();
     $request
-        ->addDestinations($destination)
+        ->addDestination($destination)
         ->setImContent($IM)
         ->setCallbackUrl('https://example.com/im/callback-sales')
         ->setJobId('abc123456')
@@ -57,7 +58,7 @@ try {
     $response = $messaging->sendMessage($request);
 
     // Print the response.
-    print_r($response->getResultInfo()->getDescription());
+    echo $response->getResultInfo()->getDescription() ."\n";
 
 } catch (\Exception $e) {
     echo $e->getMessage();
