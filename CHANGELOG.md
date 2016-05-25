@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+## Version 1.0.0-RC4
+_2016-05-25_
+- **[IMPROVEMENT]** RequestBodyEntity have no addDestinaion (to add one destination object) and addDestinations (to add multiple destinations objects)
+- **[IMPROVEMENT]** Add New examples and complete the existing ones
+- **[IMPROVEMENT]** New Readmefile.
+
+
 ## Version 1.0.0-RC3
 _2016-05-23_
 - **[IMPROVEMENT]** Clean example code.
