@@ -12,10 +12,10 @@ use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\RequestBodyEntity;
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
 // Declaring some dependencies for the Serializer
-$root = realpath(dirname(__FILE__));
+$root = dirname(__FILE__);
 Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
     'JMS\Serializer\Annotation',
-    $root . "/vendor/jms/serializer/src"
+    $root . "/../vendor/jms/serializer/src"
 );
 
 try {
@@ -24,7 +24,7 @@ try {
     //Set destination
     $destination = new DestinationEntity();
     $destination
-        ->setNumber(356123458)
+        ->setNumber(356123456)
         ->setCustomId('123456789')
     ;
 
@@ -45,15 +45,7 @@ try {
 
     $response = $messaging->sendMessage($request);
 
-    foreach ($response->getResults() as $id => $detail) {
-        $status = $messaging->getStatus($detail['message_id']);
-    }
-
-    print_r($response->getResultInfo()->getDescription());
-
-    foreach ($status->getData() as $key => $item) {
-        print_r($item->getStatus());
-    }
+    echo $response->getResultInfo()->getDescription() ."\n";
 
 } catch (\Exception $e) {
     echo $e->getMessage();

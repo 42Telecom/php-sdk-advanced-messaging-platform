@@ -19,10 +19,10 @@ use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\RequestBodyEntity;
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
 // Declaring some dependencies for the Serializer
-$root = realpath(dirname(__FILE__));
+$root = dirname(__FILE__);
 Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
     'JMS\Serializer\Annotation',
-    $root . "/vendor/jms/serializer/src"
+    $root . "/../vendor/jms/serializer/src"
 );
 
 
@@ -69,7 +69,7 @@ try {
     $response = $messaging->sendMessage($request);
 
     // Print the response.
-    print_r($response->getResultInfo()->getDescription());
+    echo $response->getResultInfo()->getDescription() ."\n";
 
 } catch (\Exception $e) {
     echo $e->getMessage();
