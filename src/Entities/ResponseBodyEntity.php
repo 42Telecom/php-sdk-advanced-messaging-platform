@@ -17,25 +17,25 @@ class ResponseBodyEntity
      * @var string $apiJobId Api Job ID.
      * @Type("string")
      */
-    private $apiJobId;
+    public $apiJobId;
 
     /**
      * @var string $clientJobId Client Job ID.
      * @Type("string")
      */
-    private $clientJobId;
+    public $clientJobId;
 
     /**
      * @var array List of object Result.
      * @Type("array")
      */
-    private $results;
+    public $results;
 
     /**
      * @var ResponseResultInfoEntity $resultInfo Result info object.
      * @Type("Fortytwo\SDK\AdvancedMessagingPlatform\Entities\ResponseResultInfoEntity")
      */
-    private $resultInfo;
+    public $resultInfo;
 
     /**
      * Get the API job
