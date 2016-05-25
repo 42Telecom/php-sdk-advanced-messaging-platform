@@ -14,13 +14,13 @@ class ResponseResultInfoEntity
      * @var string $statusCode Status code.
      * @Type("string")
      */
-    private $statusCode;
+    public $statusCode;
 
     /**
      * @var string $description Description.
      * @Type("string")
      */
-    private $description;
+    public $description;
 
     /**
      * Get the Status code.

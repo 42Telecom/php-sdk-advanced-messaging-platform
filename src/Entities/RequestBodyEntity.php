@@ -75,15 +75,29 @@ class RequestBodyEntity
     }
 
     /**
-     * Add destinations.
+     * Add one destination.
      *
      * @param  DestinationEntity $destination DestinationEntity object.
      * @return  RequestBodyEntity object.
      */
-    public function addDestinations(DestinationEntity $destination)
+    public function addDestination(DestinationEntity $destination)
     {
         $this->destinations[] = $destination;
 
+        return $this;
+    }
+
+    /**
+     * Add a list of destinations.
+     *
+     * @param  array $destinations array of DestinationEntity object.
+     * @return  RequestBodyEntity object.
+     */
+    public function addDestinations($destinations)
+    {
+        foreach ($destinations as $destination) {
+            $this->addDestination($destination);
+        }
         return $this;
     }
 
