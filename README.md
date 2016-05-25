@@ -54,10 +54,10 @@ use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\RequestBodyEntity;
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
 // Bootstrap the SDK - Set serializer dependencies
-$root = realpath(dirname(__FILE__)));
+$root = dirname(__FILE__);
 Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
     'JMS\Serializer\Annotation',
-    $root . "/vendor/jms/serializer/src"
+    $root . "/../vendor/jms/serializer/src"
 );
 
 // Prepare message : Creating a destination
@@ -78,12 +78,12 @@ $SMS
 // Prepare message : Preparing the main request
 $request = new RequestBodyEntity();
 $request
-    ->addDestinations($destination)
+    ->addDestination($destination)
     ->setSmsContent($SMS);
 
 // Send the message.
 $messaging = new AdvancedMessagingPlatform('<INSERT_TOKEN_HERE>');
 $response = $messaging->sendMessage($request);
 
-echo 'Response code '$response->getResultInfo()->getStatusCode() . ': ' . $response->getResultInfo()->getDescription()
+echo 'Response code '$response->getResultInfo()->getStatusCode() . ': ' . $response->getResultInfo()->getDescription() . '\n'
 ```
