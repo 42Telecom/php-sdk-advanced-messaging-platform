@@ -95,12 +95,13 @@ class DestinationEntity
     /**
      * Set the destination parameters.
      *
-     * @param  string $params Destination parameters.
+     * @param  array $params array of parameters (key/values).
      * @return  DestinationEntity object.
      */
     public function setParams($params)
     {
-        $this->params = (string)new ParamsValue($params);
+        $params = new ParamsValue($params);
+        $this->params = $params->getValue();
 
         return $this;
     }
