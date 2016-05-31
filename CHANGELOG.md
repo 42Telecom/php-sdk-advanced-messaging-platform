@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+## Version 1.0.0-RC5
+_2016-05-31_
+- **[BUG]** Parameters in the destination entity was a string instead of an array.
+- **[IMPROVEMENT]** Updating Testings.
+- **[IMPROVEMENT]** Adding an example with params.
+
 ## Version 1.0.0-RC4
 _2016-05-25_
 - **[IMPROVEMENT]** RequestBodyEntity have no addDestinaion (to add one destination object) and addDestinations (to add multiple destinations objects)

@@ -20,7 +20,7 @@ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/loca
 
 Please be sure to have Composer installed as prerequisite.
 ```bash
-    composer require fortytwo/php-sdk-advanced-messaging-platform:1.0.0-RC4
+    composer require fortytwo/php-sdk-advanced-messaging-platform:1.0.0-RC5
 ```
 
 
