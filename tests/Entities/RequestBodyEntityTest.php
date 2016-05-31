@@ -51,7 +51,7 @@ class RequestBodyEntityTest extends \PHPUnit_Framework_TestCase
         $destination
             ->setNumber('35611111111')
             ->setCustomId('123456')
-            ->setParams('plop')
+            ->setParams(array('KEY' => 'plop'))
         ;
 
         $SMSContent = new SMSContentEntity();
@@ -92,7 +92,7 @@ class RequestBodyEntityTest extends \PHPUnit_Framework_TestCase
         $request = new RequestBodyEntity();
 
         $request
-            ->addDestinations($destination)
+            ->addDestinations(array($destination))
             ->setJobId('9846348900')
             ->setSmsContent($SMSContent)
             ->setImContent($IMContent)
@@ -133,8 +133,8 @@ class RequestBodyEntityTest extends \PHPUnit_Framework_TestCase
             $request->getDestinations()[0]->getCustomId()
         );
 
-        $this->assertEquals(
-            "plop",
+        $this->assertArrayHasKey(
+            "KEY",
             $request->getDestinations()[0]->getParams()
         );
 
@@ -177,43 +177,43 @@ class RequestBodyEntityTest extends \PHPUnit_Framework_TestCase
         # IM action
         $this->assertEquals(
             "click here!",
-            $request->getImContent()->getActions()[0]->getTitle()
+            $request->getImContent()[0]->getActions()[0]->getTitle()
         );
         $this->assertEquals(
             "https://www.fortytwo.com/regsiter/",
-            $request->getImContent()->getActions()[0]->getTargetUrl()
+            $request->getImContent()[0]->getActions()[0]->getTargetUrl()
         );
 
         # IM Image
         $this->assertEquals(
             "https://www.fortytwo.com/wp-content/themes/fortytwo/assets/img/fortytwo-light-small.png",
-            $request->getImContent()->getImages()[0]->getUrl()
+            $request->getImContent()[0]->getImages()[0]->getUrl()
         );
 
         # IM Content
         $this->assertEquals(
             "VIBER",
-            $request->getImContent()->getChannel()
+            $request->getImContent()[0]->getChannel()
         );
 
         $this->assertEquals(
             "549689",
-            $request->getImContent()->getSenderId()
+            $request->getImContent()[0]->getSenderId()
         );
 
         $this->assertEquals(
             "Hello This is a message",
-            $request->getImContent()->getContent()
+            $request->getImContent()[0]->getContent()
         );
 
         $this->assertEquals(
             "3600",
-            $request->getImContent()->getTtl()
+            $request->getImContent()[0]->getTtl()
         );
 
         $this->assertEquals(
             "Message expired.",
-            $request->getImContent()->getExpiryText()
+            $request->getImContent()[0]->getExpiryText()
         );
 
         $this->assertContains(

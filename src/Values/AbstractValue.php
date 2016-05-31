@@ -32,13 +32,13 @@ abstract class AbstractValue implements ValueInterface
      */
     public function __construct($value)
     {
-        $this->tmp = $value;
+            $this->tmp = $value;
 
-        $this
-            ->sanitize()
-            ->validate();
+            $this
+                ->sanitize()
+                ->validate();
 
-        $this->value = $this->tmp;
+            $this->value = $this->tmp;
     }
 
     /**
@@ -56,8 +56,13 @@ abstract class AbstractValue implements ValueInterface
      */
     protected function sanitize()
     {
-        $this->tmp = trim($this->tmp);
-
+        if (is_array($this->tmp)) {
+            foreach ($this->tmp as $key => $value) {
+                $this->tmp[$key] = trim($value);
+            }
+        } else {
+            $this->tmp = trim($this->tmp);
+        }
         return $this;
     }
 

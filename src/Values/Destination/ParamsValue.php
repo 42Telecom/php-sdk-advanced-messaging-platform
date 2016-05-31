@@ -19,6 +19,16 @@ class ParamsValue extends AbstractValue implements ValueInterface
      */
     protected function assert()
     {
-        return array(new Assert\Type('string'));
+        return array(new Assert\Type('array'));
+    }
+
+    /**
+     * Return the value.
+     *
+     * @return $value the current value
+     */
+    public function getValue()
+    {
+        return $this->value;
     }
 }
