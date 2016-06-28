@@ -18,9 +18,9 @@ Install [Composer](https://getcomposer.org/):
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
-Please be sure to have Composer installed as prerequisite.
+In the root path of your project you have to add the SDK as dependency:
 ```bash
-    composer require fortytwo/php-sdk-advanced-messaging-platform:1.0.0-RC5
+    composer require fortytwo/php-sdk-advanced-messaging-platform:1.0.0-RC6
 ```
 
 
@@ -34,7 +34,7 @@ Currently the  code coverage is 100%.
 
 ## Examples:
 
-For a full list of examples, go to the **examples** folder
+For a full list of examples, go to the **[examples](examples/README.md)** folder
 - [Send an SMS](https://github.com/42Telecom/php-sdk-advanced-messaging-platform/blob/master/examples/sendSMSMessage.php)
 - [Send an Instant Message](https://github.com/42Telecom/php-sdk-advanced-messaging-platform/blob/master/examples/sendInstantMessage.php)
 - [Send IM Message with multiple destinations](https://github.com/42Telecom/php-sdk-advanced-messaging-platform/blob/master/examples/sendMultipleMessage.php)
