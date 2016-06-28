@@ -18,13 +18,17 @@ Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
     $root . "/../vendor/jms/serializer/src"
 );
 
+// To change with a correct token and phone number.
+const TOKEN = '<INSERT_TOKEN_HERE>';
+const NUMBER = '<PHONENUMBERHERE>';
+
 try {
-    $messaging = new AdvancedMessagingPlatform('<INSERT_TOKEN_HERE>');
+    $messaging = new AdvancedMessagingPlatform(TOKEN);
 
     //Set destination
     $destination = new DestinationEntity();
     $destination
-        ->setNumber(356123456)
+        ->setNumber(NUMBER)
         ->setCustomId('123456789')
         ->setParams(array('NAME' => 'sebastien', 'ID' => '255'))
     ;
