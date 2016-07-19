@@ -1,6 +1,16 @@
 CHANGELOG
 =========
 
+## Version 1.0.0-RC7
+_2016-07-19_
+* **[IMPROVEMENT]** - Add Promotional flag in the API
+
+## Version 1.0.0-RC6
+_2016-06-28_
+* **[BUG]** - Fix version number of the php core dependency
+* **[IMPROVEMENT]** - Update README and Examples.
+
+
 ## Version 1.0.0-RC5
 _2016-05-31_
 - **[BUG]** Parameters in the destination entity was a string instead of an array.
