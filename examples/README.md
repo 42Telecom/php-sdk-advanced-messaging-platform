@@ -23,7 +23,7 @@ From the root directory of the project you can install the dependencies:
 
 ### Update the example files.
 
-You can now update the examples files changing the "TOKEN" constant with a valid token and the "NUMBER" constant with a valid phone number.
+You have to update the examples files changing the "TOKEN" constant with a valid token and the "NUMBER" constant with a valid phone number.
 
 
 ### Execute the examples.
