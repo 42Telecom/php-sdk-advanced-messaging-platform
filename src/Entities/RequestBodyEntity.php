@@ -7,8 +7,10 @@ use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\SMSContentEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\IMContentEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Values\Body\JobIdValue;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Values\Body\ReplyUrlValue;
+use Fortytwo\SDK\AdvancedMessagingPlatform\Values\Body\PromotionalValue;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Values\Body\CallbackUrlValue;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Values\Body\MessagePlanValue;
+
 #Serializer:
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\Annotation\ExclusionPolicy;
@@ -63,6 +65,12 @@ class RequestBodyEntity
      * @Expose
      */
     private $replyUrl;
+
+    /**
+     * @var string $promotional Promotional flag.
+     * @Expose
+     */
+    private $promotional;
 
     /**
      * Get the list of destinations
@@ -236,6 +244,29 @@ class RequestBodyEntity
     public function setReplyUrl($replyUrl)
     {
         $this->replyUrl = (string)new ReplyUrlValue($replyUrl);
+
+        return $this;
+    }
+
+    /**
+     * Get the promotional flag.
+     *
+     * @return bool Promotional flag.
+     */
+    public function getPromotional()
+    {
+        return $this->promotional;
+    }
+
+    /**
+     * Set promotional flag.
+     *
+     * @param  bool $promotional Promotional flag.
+     * @return  RequestBodyEntity object.
+     */
+    public function setPromotional($promotional)
+    {
+        $this->promotional = (string)new PromotionalValue($replyUrl);
 
         return $this;
     }
