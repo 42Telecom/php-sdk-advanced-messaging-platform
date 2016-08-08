@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+## Version 1.0.0-RC8
+_2016-08-08_
+* **[IMPROVEMENT]** - Add Ubiquity in accordance with the API.
+
 ## Version 1.0.0-RC7
 _2016-07-19_
 * **[IMPROVEMENT]** - Add Promotional flag in the API
