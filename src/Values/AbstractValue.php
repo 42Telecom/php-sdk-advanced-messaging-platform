@@ -61,7 +61,11 @@ abstract class AbstractValue implements ValueInterface
                 $this->tmp[$key] = trim($value);
             }
         } else {
-            $this->tmp = trim($this->tmp);
+            if (is_bool($this->tmp)) {
+                $this->tmp = $this->tmp;
+            } else {
+                $this->tmp = trim($this->tmp);
+            }
         }
         return $this;
     }
@@ -102,5 +106,15 @@ abstract class AbstractValue implements ValueInterface
         }
 
         return $this;
+    }
+
+    /**
+     * Return the value.
+     *
+     * @return $value the current value
+     */
+    public function getValue()
+    {
+        return $this->value;
     }
 }
