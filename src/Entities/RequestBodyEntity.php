@@ -5,6 +5,7 @@ namespace Fortytwo\SDK\AdvancedMessagingPlatform\Entities;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\DestinationEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\SMSContentEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\IMContentEntity;
+use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\UbiquityContentEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Values\Body\JobIdValue;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Values\Body\ReplyUrlValue;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Values\Body\PromotionalValue;
@@ -35,6 +36,12 @@ class RequestBodyEntity
      * @Expose
      */
     private $jobId;
+
+    /**
+     * @var object $message Object Ubiquity Content
+     * @Expose
+     */
+    private $message;
 
     /**
      * @var object $smsContent Object Sms Content
@@ -128,6 +135,29 @@ class RequestBodyEntity
     public function setJobId($jobId)
     {
         $this->jobId = (string)new JobIdValue($jobId);
+
+        return $this;
+    }
+
+    /**
+     * Get the Ubiquity/Message Content object
+     *
+     * @return object Ubiquity Content object
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set Ubiquity/Message Content.
+     *
+     * @param  UbiquityContentEntity $message Ubiquity Content.
+     * @return  RequestBodyEntity object.
+     */
+    public function setMessage(UbiquityContentEntity $message)
+    {
+        $this->message = $message;
 
         return $this;
     }
@@ -266,7 +296,8 @@ class RequestBodyEntity
      */
     public function setPromotional($promotional)
     {
-        $this->promotional = (string)new PromotionalValue($replyUrl);
+        $promo = new PromotionalValue($promotional);
+        $this->promotional = $promo->getValue();
 
         return $this;
     }

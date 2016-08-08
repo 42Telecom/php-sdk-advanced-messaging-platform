@@ -20,7 +20,7 @@ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/loca
 
 In the root path of your project you have to add the SDK as dependency:
 ```bash
-    composer require fortytwo/php-sdk-advanced-messaging-platform:1.0.0-RC7
+    composer require fortytwo/php-sdk-advanced-messaging-platform:1.0.0-RC8
 ```
 
 

@@ -22,7 +22,7 @@ class PromotionalValue extends AbstractValue implements ValueInterface
     {
         return array(
             new Assert\Type(
-                array('bool')
+                'bool'
             )
         );
     }
