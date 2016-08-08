@@ -1,12 +1,14 @@
 <?php
 namespace Fortytwo\SDK\AdvancedMessagingPlatform;
 
+use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\TextEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\RequestBodyEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\DestinationEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\IMActionEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\IMContentEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\IMImageEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\SMSContentEntity;
+use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\UbiquityContentEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Values\NoBlankValue;
 
 class RequestBodyEntityTest extends \PHPUnit_Framework_TestCase
@@ -42,6 +44,11 @@ class RequestBodyEntityTest extends \PHPUnit_Framework_TestCase
             'Fortytwo\SDK\AdvancedMessagingPlatform\Entities\SMSContentEntity',
             new SMSContentEntity()
         );
+
+        $this->assertInstanceOf(
+            'Fortytwo\SDK\AdvancedMessagingPlatform\Entities\UbiquityContentEntity',
+            new UbiquityContentEntity()
+        );
     }
 
     public function testEntities()
@@ -53,6 +60,8 @@ class RequestBodyEntityTest extends \PHPUnit_Framework_TestCase
             ->setCustomId('123456')
             ->setParams(array('KEY' => 'plop'))
         ;
+
+
 
         $SMSContent = new SMSContentEntity();
 
@@ -89,16 +98,28 @@ class RequestBodyEntityTest extends \PHPUnit_Framework_TestCase
             ->addAction($IMAction)
         ;
 
+        $text = new TextEntity();
+        $text->setText('This is an Ubiquity text.');
+
+        $message = new UbiquityContentEntity();
+        $message
+            ->addText($text)
+            ->addImage($IMImage)
+            ->addAction($IMAction)
+        ;
+
         $request = new RequestBodyEntity();
 
         $request
             ->addDestinations(array($destination))
             ->setJobId('9846348900')
+            ->setMessage($message)
             ->setSmsContent($SMSContent)
             ->setImContent($IMContent)
             ->setMessagePlan('FEATURE_RICH')
             ->setCallbackUrl('https://www.fortytwo.com/')
             ->setReplyUrl('https://www.fortytwo.com/replyurl')
+            ->setPromotional(true)
         ;
 
 
@@ -174,6 +195,11 @@ class RequestBodyEntityTest extends \PHPUnit_Framework_TestCase
             $request->getSmsContent()->getTtl()
         );
 
+        $this->assertEquals(
+            "This is an Ubiquity text.",
+            $request->getMessage()->getTexts()[0]->getText()
+        );
+
         # IM action
         $this->assertEquals(
             "click here!",
@@ -219,6 +245,11 @@ class RequestBodyEntityTest extends \PHPUnit_Framework_TestCase
         $this->assertContains(
             'VIBER',
             $request->toJSON()
+        );
+
+        $this->assertEquals(
+            true,
+            $request->getPromotional()
         );
     }
 

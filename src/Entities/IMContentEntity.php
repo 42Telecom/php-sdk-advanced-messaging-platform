@@ -4,6 +4,7 @@ namespace Fortytwo\SDK\AdvancedMessagingPlatform\Entities;
 
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\IMImageEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\IMActionEntity;
+use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\AbstractMessageEntity;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Values\IMContent\ContentValue;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Values\IMContent\ChannelValue;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Values\IMContent\ExpiryTextValue;
@@ -20,7 +21,7 @@ use JMS\Serializer\Annotation\Expose;
  * @ExclusionPolicy("all")
  * @license https://opensource.org/licenses/MIT MIT
  */
-class IMContentEntity
+class IMContentEntity extends AbstractMessageEntity
 {
 
     /**
@@ -40,18 +41,6 @@ class IMContentEntity
      * @Expose
      */
     private $content;
-
-    /**
-     * @var array Images.
-     * @Expose
-     */
-    private $images;
-
-    /**
-     * @var array Actions.
-     * @Expose
-     */
-    private $actions;
 
     /**
      * @var string Time to live.
@@ -130,52 +119,6 @@ class IMContentEntity
     public function setContent($content)
     {
         $this->content = (string)new ContentValue($content);
-
-        return $this;
-    }
-
-    /**
-     * Get the images
-     *
-     * @return array list of images objects.
-     */
-    public function getImages()
-    {
-        return $this->images;
-    }
-
-    /**
-     * Add an image.
-     *
-     * @param  IMImageEntity $image iamge object.
-     * @return  IMContentEntity object.
-     */
-    public function addImage(IMImageEntity $image)
-    {
-        $this->images[] = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get the actions
-     *
-     * @return array list of actions objects.
-     */
-    public function getActions()
-    {
-        return $this->actions;
-    }
-
-    /**
-     * Add an action.
-     *
-     * @param  IMActionEntity $action action object.
-     * @return  IMContentEntity object.
-     */
-    public function addAction(IMActionEntity $action)
-    {
-        $this->actions[] = $action;
 
         return $this;
     }
