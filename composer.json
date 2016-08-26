@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "fortytwo/php-sdk-core": "1.1.1",
+        "fortytwo/php-sdk-core": "1.1.*",
         "symfony/validator": "^3.0"
     },
     "require-dev": {
