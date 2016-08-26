@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+## Version 1.0.0
+_2016-08-26_
+* **[BUG]** - Remove compose.lock.
+
 ## Version 1.0.0-RC8
 _2016-08-08_
 * **[IMPROVEMENT]** - Add Ubiquity in accordance with the API.
