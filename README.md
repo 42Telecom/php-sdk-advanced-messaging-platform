@@ -13,10 +13,7 @@ Once registered, in the control panel please go to "IM" > "Tokens" and Add a New
 ## Setup
 
 ### With Composer:
-Install [Composer](https://getcomposer.org/):
-``` bash
-curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
-```
+Install [Composer](https://getcomposer.org/doc/00-intro.md).
 
 In the root path of your project you have to add the SDK as dependency:
 ```bash
