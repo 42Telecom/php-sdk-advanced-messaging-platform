@@ -28,7 +28,7 @@ You have to update the examples files changing the "TOKEN" constant with a valid
 
 ### Execute the examples.
 
-You can excute the example from the example directory directly with php:
+You can execute the example from the example directory directly with php:
 
 ```
     php sendInstantMessage.php
