@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+## Version 1.0.1
+_2016-10-17_
+* **[IMPROVEMENT]** - Small update of the documentation.
+
+## Version 1.0.0
+_2016-08-26_
+* **[IMPROVEMENT]** - Release candidate.
+
 ## Version 1.0.0-RC8
 _2016-08-08_
 * **[IMPROVEMENT]** - Add Ubiquity in accordance with the API.
