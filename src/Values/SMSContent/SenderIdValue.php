@@ -19,6 +19,7 @@ class SenderIdValue extends AbstractValue implements ValueInterface
      */
     protected function assert()
     {
+        $asserts = array();
         if (ctype_digit($this->tmp)) {
             $asserts = array(
                 new Assert\Length(
@@ -29,7 +30,7 @@ class SenderIdValue extends AbstractValue implements ValueInterface
                 ),
                 new Assert\Type('digit')
             );
-        } elseif (ctype_alnum($this->tmp)) {
+        } else {
             $asserts = array(
                 new Assert\Length(
                     array(
