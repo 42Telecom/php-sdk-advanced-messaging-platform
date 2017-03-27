@@ -1,18 +1,13 @@
 <?php
 /**
  * Send IM Message with multiple destinations
- * NOTE: If you want to test you have to replace <INSERT_TOKEN_HERE> with a valid token.
+ * NOTE: If you want to test you have to replace <INSERT_TOKEN_HERE> with a valid token and <PHONE_NUMBER> with a mobile phone number including prefix (e.g 356880000001) .
  */
 
 // You have to include the dependencies
-// The main class for the SDK
 use Fortytwo\SDK\AdvancedMessagingPlatform\AdvancedMessagingPlatform;
-// The class who represent the model of the API
-// The Destination class
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\DestinationEntity;
-// The IM Content class
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\IMContentEntity;
-// Request Body class
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\RequestBodyEntity;
 
 // Using the Composer autoload
@@ -27,9 +22,8 @@ Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
 
 // To change with a correct token and phone numbers.
 const TOKEN = '<INSERT_TOKEN_HERE>';
-const NUMBER1 = '<PHONENUMBERHERE>';
-const NUMBER2 = '<PHONENUMBERHERE>';
-const NUMBER3 = '<PHONENUMBERHERE>';
+const NUMBER1 = '<PHONE_NUMBER>';
+const NUMBER2 = '<PHONE_NUMBER>';
 
 // Here the code to create and send the message.
 try {
@@ -38,37 +32,22 @@ try {
     //Create a 1st destination
     $destination1 = new DestinationEntity();
     $destination[] = $destination1
-        ->setNumber(NUMBER1)
-        ->setCustomId('customer1')
-    ;
+        ->setNumber(NUMBER1);
+
     //Create a 2nd destination
     $destination2 = new DestinationEntity();
     $destination[] = $destination2
-        ->setNumber(NUMBER2)
-        ->setCustomId('customer2')
-    ;
-    //Create a 3rd destination
-    $destination3 = new DestinationEntity();
-    $destination[] = $destination3
-        ->setNumber(NUMBER3)
-        ->setCustomId('customer3')
-    ;
+        ->setNumber(NUMBER2);
 
     // Prepare the IM content
     $IM = new IMContentEntity();
-    $IM
-        ->setChannel('VIBER')
-        ->setContent('This is a test IM message from Fortytwo.')
-    ;
+    $IM->setContent('This is a test IM message from Fortytwo.');
 
     // Prepare the Request Body
     $request = new RequestBodyEntity();
     $request
         ->addDestinations($destination)
-        ->setImContent($IM)
-        ->setCallbackUrl('https://example.com/im/callback-sales')
-        ->setJobId('abc123456')
-    ;
+        ->setImContent($IM);
 
     // Send the IM message
     $response = $messaging->sendMessage($request);

@@ -1,18 +1,13 @@
 <?php
 /**
  * This Example send an IM Message.
- * NOTE: If you want to test you have to replace <INSERT_TOKEN_HERE> with a valid token.
+ * NOTE: If you want to test you have to replace <INSERT_TOKEN_HERE> with a valid token and <PHONE_NUMBER> with a mobile phone number including prefix (e.g 356880000001) .
  */
 
 // You have to include the dependencies
-// The main class for the SDK
 use Fortytwo\SDK\AdvancedMessagingPlatform\AdvancedMessagingPlatform;
-// The class who represent the model of the API
-// The Destination class
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\DestinationEntity;
-// The IM Content class
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\IMContentEntity;
-// Request Body class
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\RequestBodyEntity;
 
 // Using the Composer autoload
@@ -27,7 +22,7 @@ Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
 
 // To change with a correct token and phone number.
 const TOKEN = '<INSERT_TOKEN_HERE>';
-const NUMBER = '<PHONENUMBERHERE>';
+const NUMBER = '<PHONE_NUMBER>';
 
 // Here the code to create and send the message.
 try {
@@ -35,26 +30,18 @@ try {
 
     //Create a destination
     $destination = new DestinationEntity();
-    $destination
-        ->setNumber(NUMBER)
-        ->setCustomId('123456789')
-    ;
+    $destination->setNumber(NUMBER);
 
     // Prepare the IM content
     $IM = new IMContentEntity();
 
-    $IM
-        ->setChannel('VIBER')
-        ->setContent('This is a test IM message from Fortytwo.')
-    ;
+    $IM->setContent('This is a test IM message from Fortytwo.');
 
     // Prepare the Request Body
     $request = new RequestBodyEntity();
     $request
         ->addDestination($destination)
         ->setImContent($IM)
-        ->setCallbackUrl('https://example.com/im/callback-sales')
-        ->setJobId('abc123456')
     ;
 
     // Send the IM message
