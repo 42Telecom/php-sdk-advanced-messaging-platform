@@ -38,7 +38,7 @@ class SenderIdValue extends AbstractValue implements ValueInterface
                         'max' => 11
                     )
                 ),
-                new Assert\Type('alnum')
+                new Assert\Type('string')
             );
         }
 
