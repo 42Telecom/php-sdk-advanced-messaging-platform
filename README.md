@@ -11,24 +11,70 @@ In order to use the Advanced Messaging Platform, a token is required to autentic
 Once registered, in the control panel please go to "IM" > "Tokens" and Add a New Token. The token generated above will be used in the code
 
 ## Setup
-
-### With Composer:
 Install [Composer](https://getcomposer.org/doc/00-intro.md).
 
 In the root path of your project you have to add the SDK as dependency:
 ```bash
-    composer require fortytwo/php-sdk-advanced-messaging-platform:1.0.0
+    composer require fortytwo/php-sdk-advanced-messaging-platform
+    composer install
 ```
-
-
-## Testing:
-
-Execute the following command on the project directory:
-```bash
-vendor/bin/phpunit -c tests/Phpunit.xml
-```
-Currently the  code coverage is 100%.
 
 ## Examples:
+```php
+<?php
+/**
+ * This Example send a SMS Message to FortyTwo 2FA API and request a message status.
+ * NOTE: If you want to test you have to replace <INSERT_TOKEN_HERE> with a valid token.
+ */
+use Fortytwo\SDK\AdvancedMessagingPlatform\AdvancedMessagingPlatform;
+use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\DestinationEntity;
+use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\SMSContentEntity;
+use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\RequestBodyEntity;
+
+// Using the Composer autoload
+require dirname(__FILE__) . '/../vendor/autoload.php';
+
+// Declaring some dependencies for the Serializer
+$root = dirname(__FILE__);
+Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
+    'JMS\Serializer\Annotation',
+    $root . "/../vendor/jms/serializer/src"
+);
+
+// To change with a correct token and phone number.
+const TOKEN = '<INSERT_TOKEN_HERE>';
+const NUMBER = '<PHONENUMBERHERE>';
+
+try {
+    $messaging = new AdvancedMessagingPlatform(TOKEN);
+
+    //Set destination
+    $destination = new DestinationEntity();
+    $destination->setNumber(NUMBER);
+
+    //SMS Content
+    $SMS = new SMSContentEntity();
+
+    $SMS
+        ->setMessage('This is a test SMS message from Fortytwo.')
+        ->setSenderId('Fortytwo');
+
+    $request = new RequestBodyEntity();
+
+    $request
+        ->addDestination($destination)
+        ->setSmsContent($SMS);
+
+    $response = $messaging->sendMessage($request);
+
+    echo $response->getResultInfo()->getDescription() ."\n";
+
+} catch (\Exception $e) {
+    echo $e->getMessage();
+}
+
+
+```
+
 
 For a full list of examples, go to the **[examples](examples/README.md)** folder.
