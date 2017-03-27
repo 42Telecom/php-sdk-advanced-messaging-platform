@@ -23,8 +23,8 @@ In the root path of your project you have to add the SDK as dependency:
 ```php
 <?php
 /**
- * This Example send a SMS Message to FortyTwo 2FA API and request a message status.
- * NOTE: If you want to test you have to replace <INSERT_TOKEN_HERE> with a valid token.
+ * This Example sends an SMS to a phone number
+ * NOTE: If you want to test you have to replace <INSERT_TOKEN_HERE> with a valid token and <PHONE_NUMBER> with a mobile phone number including prefix (e.g 356880000001) .
  */
 use Fortytwo\SDK\AdvancedMessagingPlatform\AdvancedMessagingPlatform;
 use Fortytwo\SDK\AdvancedMessagingPlatform\Entities\DestinationEntity;
@@ -43,7 +43,7 @@ Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
 
 // To change with a correct token and phone number.
 const TOKEN = '<INSERT_TOKEN_HERE>';
-const NUMBER = '<PHONENUMBERHERE>';
+const NUMBER = '<PHONE_NUMBER>';
 
 try {
     $messaging = new AdvancedMessagingPlatform(TOKEN);

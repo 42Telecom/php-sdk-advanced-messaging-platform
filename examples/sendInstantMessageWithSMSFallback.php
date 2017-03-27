@@ -1,7 +1,7 @@
 <?php
 /**
  * This Example send an IM Message with a SMS Fallback.
- * NOTE: If you want to test you have to replace <INSERT_TOKEN_HERE> with a valid token.
+ * NOTE: If you want to test you have to replace <INSERT_TOKEN_HERE> with a valid token and <PHONE_NUMBER> with a mobile phone number including prefix (e.g 356880000001) .
  */
 
 // You have to include the dependencies
@@ -28,7 +28,7 @@ Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
 
 // To change with a correct token and phone number.
 const TOKEN = '<INSERT_TOKEN_HERE>';
-const NUMBER = '<PHONENUMBERHERE>';
+const NUMBER = '<PHONE_NUMBER>';
 
 // Here the code to create and send the message.
 try {
@@ -36,16 +36,12 @@ try {
 
     //Create a destination
     $destination = new DestinationEntity();
-    $destination
-        ->setNumber(NUMBER)
-        ->setCustomId('123456789')
-    ;
+    $destination->setNumber(NUMBER);
 
     // Prepare the IM content
     $IM = new IMContentEntity();
 
     $IM
-        ->setChannel('VIBER')
         ->setContent('This is a test IM message from Fortytwo.')
     ;
 
@@ -54,7 +50,6 @@ try {
     $SMS
         ->setMessage('This is a test SMS message from Fortytwo.')
         ->setSenderId('Fortytwo')
-        ->setTtl(3600)
     ;
 
     // Prepare the Request Body
@@ -62,9 +57,7 @@ try {
     $request
         ->addDestination($destination)
         ->setImContent($IM)
-        ->setSmsContent($SMS)
-        ->setCallbackUrl('https://example.com/im/callback-sales')
-        ->setJobId('abc123456')
+        ->setSmsContent($SMS);
     ;
 
     // Send the IM message
